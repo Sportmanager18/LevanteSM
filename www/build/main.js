@@ -1148,10 +1148,10 @@ var MyApp = /** @class */ (function () {
         // used for an example of ngFor and navigation
         this.pages = [
             { icon: "football", title: 'Partidos', component: __WEBPACK_IMPORTED_MODULE_8__pages_partidos_partidos__["a" /* PartidosPage */] },
+            { icon: "add-circle", title: 'Subir partido', component: __WEBPACK_IMPORTED_MODULE_14__pages_subirpartido_subirpartido__["a" /* SubirpartidoPage */] },
             { icon: "contacts", title: 'Asistencia', component: __WEBPACK_IMPORTED_MODULE_10__pages_asistencia_asistencia__["a" /* AsistenciaPage */] },
             { icon: "timer", title: 'Minutos', component: __WEBPACK_IMPORTED_MODULE_9__pages_minutos_minutos__["a" /* MinutosPage */] },
             { icon: "warning", title: 'Incidencias', component: __WEBPACK_IMPORTED_MODULE_5__pages_incidencias_incidencias__["a" /* IncidenciasPage */] },
-            { icon: "add-circle", title: 'Subir partido', component: __WEBPACK_IMPORTED_MODULE_14__pages_subirpartido_subirpartido__["a" /* SubirpartidoPage */] },
             { icon: "eye", title: 'Ver datos', component: __WEBPACK_IMPORTED_MODULE_13__pages_ver_datos_ver_datos__["a" /* VerDatosPage */] }
         ];
         /*console.log('ionViewDidLoad ListajugadoresPage');
@@ -1185,6 +1185,13 @@ var MyApp = /** @class */ (function () {
                     _this.categoria = email[0].substring(0, 1).toUpperCase() + email[0].substring(1, email[0].length - 1) + email[0].substring(email[0].length - 1).toUpperCase();
                     // y lo guardamos en la propiedad estatica categoria de JugadoresProvider
                     __WEBPACK_IMPORTED_MODULE_11__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria = _this.categoria;
+                    __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/' + _this.categoria).on('value', function (snapshot) {
+                        _this.clasi = [];
+                        snapshot.forEach(function (snap) {
+                            _this.clasi.push(snap.val());
+                            return false;
+                        });
+                    });
                     // cargamos equipos
                     __WEBPACK_IMPORTED_MODULE_12__providers_equipos_equipos__["a" /* EquiposProvider */].fetch();
                     // cargamos los jugadores de la cuenta que ha iniciado sesion
@@ -1199,6 +1206,9 @@ var MyApp = /** @class */ (function () {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
+    };
+    MyApp.prototype.equipo = function () {
+        location.assign(this.clasi[6]);
     };
     MyApp.prototype.signOut = function () {
         var _this = this;
@@ -1228,18 +1238,15 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/'\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <img src="assets/imgs/logo.jpg" alt="avatarimg" />\n\n      <ion-title>{{ categoria }}</ion-title>\n\n      <ion-item (click)="equipo()">Equipo en la FCF</ion-item>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name="{{ p.icon }}" item-start></ion-icon>\n\n        {{p.title}}\n\n      </button>\n\n      <button ion-item (click)="signOut()">\n\n        <ion-icon name="exit" item-start></ion-icon>\n\n        Cerrar sesion\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/'\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <img src="assets/imgs/logo.jpg" alt="avatarimg" />\n\n      <ion-title>{{ categoria }}</ion-title>\n\n      <i (click)="equipo()">Equipo en la FCF</i>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name="{{ p.icon }}" item-start></ion-icon>\n\n        {{p.title}}\n\n      </button>\n\n      <button ion-item (click)="signOut()">\n\n        <ion-icon name="exit" item-start></ion-icon>\n\n        Cerrar sesion\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _f || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -1616,7 +1623,7 @@ var SubirpartidoPage = /** @class */ (function () {
     };
     SubirpartidoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-subirpartido',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/'<!--\n  Generated template for the SubirpartidoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Subir Partido</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  \n  <form [formGroup]="form" (ngSubmit)="subirPartido(form)">\n    <div class="nuevo-partido">\n      <div class="vs-container">\n        <ion-item>\n          <ion-label>Local</ion-label>\n          <ion-select formControlName="equipoLocal" name="equipoLocal" required>\n          <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n        <h1>VS</h1>\n        <ion-item>\n          <ion-label>Visitante</ion-label>\n          <ion-select formControlName="equipoVisitante" name="equipoVisitante" required>\n            <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n      <div class="partido-inputs">\n        <ion-input formControlName="golesLocal" name="golesLocal" type="number" value="0" required></ion-input>\n        <ion-input formControlName="golesVisitante" name="golesVisitante" type="number" value="0" required></ion-input>\n      </div>\n      <button ion-button type="submit">Subir partido</button>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/,
+            selector: 'page-subirpartido',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/'<!--\n  Generated template for the SubirpartidoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Subir Partido\n        <img src="assets/imgs/logosf.png"/>\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n  \n  <form [formGroup]="form" (ngSubmit)="subirPartido(form)">\n    <div class="nuevo-partido">\n      <div class="vs-container">\n        <ion-item>\n          <ion-label>Local</ion-label>\n          <ion-select formControlName="equipoLocal" name="equipoLocal" required>\n          <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n        <h1>VS</h1>\n        <ion-item>\n          <ion-label>Visitante</ion-label>\n          <ion-select formControlName="equipoVisitante" name="equipoVisitante" required>\n            <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n      <div class="partido-inputs">\n        <ion-input formControlName="golesLocal" name="golesLocal" type="number" value="0" required></ion-input>\n        <ion-input formControlName="golesVisitante" name="golesVisitante" type="number" value="0" required></ion-input>\n      </div>\n      <button ion-button type="submit">Subir partido</button>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object])
     ], SubirpartidoPage);

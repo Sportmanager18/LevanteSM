@@ -83,7 +83,7 @@ export class MyApp {
           this.categoria = email[0].substring(0, 1).toUpperCase() + email[0].substring(1, email[0].length - 1) + email[0].substring(email[0].length -1 ).toUpperCase();
           // y lo guardamos en la propiedad estatica categoria de JugadoresProvider
           JugadoresProvider.categoria = this.categoria;
-          firebase.database().ref('/' + JugadoresProvider.categoria).on('value', (snapshot) => {
+          firebase.database().ref('/' + this.categoria).on('value', (snapshot) => {
             this.clasi=[];
             snapshot.forEach((snap) => {
               this.clasi.push(snap.val());
@@ -99,6 +99,7 @@ export class MyApp {
         }
       });
     });
+    
   }
 
   openPage(page) {
