@@ -48,7 +48,7 @@ export class MyApp {
       { icon: "contacts", title: 'Asistencia', component: AsistenciaPage },
       { icon: "timer", title: 'Minutos', component: MinutosPage },
       { icon: "warning", title: 'Incidencias', component: IncidenciasPage },
-      {icon: "md-add-circle", title: 'Subir partido',component:SubirpartidoPage},
+      {icon: "add-circle", title: 'Subir partido',component:SubirpartidoPage},
       { icon: "eye", title: 'Ver datos', component: VerDatosPage }
     ];
     /*console.log('ionViewDidLoad ListajugadoresPage');
