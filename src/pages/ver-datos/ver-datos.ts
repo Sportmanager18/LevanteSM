@@ -79,7 +79,7 @@ export class VerDatosPage {
           return false;
         });
       });
-      var asistencias=this.datos[4]*this.partidos.length;
+      var asistencias=this.datos[5]*this.partidos.length;
       document.getElementById("informacion").innerHTML="<H4>Faltas de asistencia: " + this.informacion.length + " / "+ asistencias+"</H4>";
       var contenido=document.createElement("DIV");
       var a=document.createAttribute("class");
@@ -122,7 +122,7 @@ export class VerDatosPage {
         for(cont =0;cont<this.informacion.length;cont++){
                 minutos_tj=minutos_tj+this.informacion[cont].minutos;
             }
-        minutos_t=this.datos[6];
+        minutos_t=this.datos[7];
         minutos_t=minutos_t*this.informacion.length;
         document.getElementById("informacion").innerHTML="<h5>Partidos jugados : " + this.informacion.length +"</h5>"+"<h5>Minutos totales : " + minutos_tj +" de "+minutos_t+"</h5><br/>";
         for(cont2 =0;cont2<this.informacion.length;cont2++){

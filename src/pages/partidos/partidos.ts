@@ -40,7 +40,9 @@ export class PartidosPage {
     this.navCtrl.push(SubirpartidoPage);
   }
   Clasificacion(){
-    console.log(this.clasi[3]);
+    location.assign(this.clasi[4]);
+  }
+  Calendario(){
     location.assign(this.clasi[3]);
   }
   cargarPartidos() {

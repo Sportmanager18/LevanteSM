@@ -94,7 +94,7 @@ export class SubirpartidoPage {
                 ]
               });
               alert.present();
-              this.navCtrl.push(PartidosPage);
+              this.navCtrl.setRoot(PartidosPage);
             }else{
               let alert = this.alertCtrl.create({
                 title: 'Error al subir el partido',
