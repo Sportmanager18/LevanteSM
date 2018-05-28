@@ -24,10 +24,10 @@ import { SubirpartidoPage } from '../pages/subirpartido/subirpartido';
     LoginPage,
     ListajugadoresPage,
     PartidosPage,
+    SubirpartidoPage,
     MinutosPage,
     AsistenciaPage,
-    VerDatosPage,
-    SubirpartidoPage
+    VerDatosPage
   ],
   imports: [
     BrowserModule,
@@ -40,10 +40,10 @@ import { SubirpartidoPage } from '../pages/subirpartido/subirpartido';
     LoginPage,
     ListajugadoresPage,
     PartidosPage,
+    SubirpartidoPage,
     MinutosPage,
     AsistenciaPage,
-    VerDatosPage,
-    SubirpartidoPage
+    VerDatosPage
   ],
   providers: [
     StatusBar,
