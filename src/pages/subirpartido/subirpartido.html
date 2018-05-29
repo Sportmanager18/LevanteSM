@@ -43,4 +43,12 @@
       <button ion-button type="submit">Subir partido</button>
     </div>
   </form>
+  <h5>Marcar solo los no convocados</h5>
+  <ion-list>
+    <ion-item *ngFor="let jugador of jugadores">
+      <ion-label>{{jugador.nombre}}</ion-label>
+      <ion-checkbox item-right value="false"  [(ngModel)]="jugador.value" (click)="convocado(jugador)"></ion-checkbox>
+    </ion-item>  
+  </ion-list> 
+  <button ion-button full (click)="subirconvocados()">Enviar Convocados</button>
 </ion-content>

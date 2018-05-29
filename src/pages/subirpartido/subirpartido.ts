@@ -5,6 +5,7 @@ import { EquiposProvider } from '../../providers/equipos/equipos';
 import { JugadoresProvider } from '../../providers/jugadores/jugadores';
 import firebase from 'firebase';
 import { PartidosPage } from '../partidos/partidos';
+import { MinutosPage } from '../minutos/minutos';
 /**
  * Generated class for the SubirpartidoPage page.
  *
@@ -18,11 +19,12 @@ import { PartidosPage } from '../partidos/partidos';
   templateUrl: 'subirpartido.html',
 })
 export class SubirpartidoPage {
-
+  public jugadores: Array<object>;
   public equipos: Array<object> = [];
   public partidos: Array<object> = [];
   public form: FormGroup;
-
+  public id:number;
+  public static convocados:Array<any>= new Array(20);
   constructor(private alertCtrl: AlertController, private builder: FormBuilder, public navCtrl: NavController, public navParams: NavParams) {
     this.form = builder.group({
       equipoLocal: ['', Validators.required],
@@ -31,18 +33,75 @@ export class SubirpartidoPage {
       golesVisitante: [0, Validators.required]
     });
   }
-
   ionViewDidLoad() {
+    this.jugadores = JugadoresProvider.getJugadores();
     let _interval = setInterval(() => {
       if(EquiposProvider.cargado) {
         clearInterval(_interval);
         this.equipos = EquiposProvider.getEquipos();
       }
-      console.log(this.equipos);
     }, 100);
     console.log('ionViewDidLoad SubirpartidoPage');
+    console.log(this.jugadores);
   }
-  
+  convocado(jugador){
+    this.id=this.jugadores.indexOf(jugador);
+    SubirpartidoPage.convocados[this.id]=jugador.value;
+  }
+  subirconvocados(){
+    let alert = this.alertCtrl.create({
+      title: 'Subir No Convocados',
+      message: '¿Estas seguro de subir los no convocados?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Subir no convocados',
+          role: 'destructive', // color rojo en iOS
+          handler: () => {
+            let fjugador=0;
+    for(let cont=0;fjugador==0;cont++){
+      console.log(SubirpartidoPage.convocados[cont]);
+      if(SubirpartidoPage.convocados[cont] == true ){
+        let date=new Date();
+        let dd = date.getDate();
+        let mm = (date.getMonth()+1);
+        let yyyy = date.getFullYear();
+        let fecha : string;
+        fecha = yyyy + '-' + mm + '-' + dd;
+        firebase.database().ref('/' + JugadoresProvider.categoria + '/Jugadores/' + cont +'/Minutos/'+fecha).set({
+            convocado:"No"
+        }); 
+      } 
+      if(this.jugadores[cont+1]==null){
+        fjugador=1;
+      }
+    }
+
+    let alert = this.alertCtrl.create({
+      title: 'Se han enviado los no convocados',
+      message: 'Los no convocados se han enviado exitosamente!',
+      buttons: [
+        {
+          text: 'Aceptar',
+          role: 'OK'
+        }
+      ]
+    });
+
+    alert.present();
+    this.navCtrl.push(MinutosPage);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   subirPartido(form) {
     let alert = this.alertCtrl.create({
       title: 'Subir Partido',

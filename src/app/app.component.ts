@@ -48,7 +48,6 @@ export class MyApp {
       { icon: "football",title: 'Partidos', component: PartidosPage },
       { icon: "add-circle", title: 'Subir partido',component:SubirpartidoPage},
       { icon: "contacts", title: 'Asistencia', component: AsistenciaPage },
-      { icon: "timer", title: 'Minutos', component: MinutosPage },
       { icon: "warning", title: 'Incidencias', component: IncidenciasPage },
       { icon: "eye", title: 'Ver datos', component: VerDatosPage }
     ];

@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76,7 +76,7 @@ var AuthProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 125:
+/***/ 126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -125,7 +125,7 @@ var EquiposProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 148:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -235,7 +235,7 @@ var AsistenciaPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 149:
+/***/ 150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -243,7 +243,7 @@ var AsistenciaPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__incidencias_incidencias__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__incidencias_incidencias__ = __webpack_require__(82);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -299,14 +299,14 @@ var ListajugadoresPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 150:
+/***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(125);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -373,181 +373,6 @@ var LoginPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 151:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MinutosPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the MinutosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var MinutosPage = /** @class */ (function () {
-    function MinutosPage(alertCtrl, navCtrl, navParams) {
-        this.alertCtrl = alertCtrl;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.minutos = new Array(25);
-    }
-    MinutosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad MinutosPage');
-        this.cargarminutot();
-        this.jugadores = __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].getJugadores();
-    };
-    MinutosPage.prototype.cargarminutot = function () {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria).on('value', function (snapshot) {
-            snapshot.forEach(function (snap) {
-                _this.minutot = snap.val();
-                return false;
-            });
-        });
-    };
-    MinutosPage.prototype.crearminuto = function (jugador) {
-        this.id = this.jugadores.indexOf(jugador);
-        this.minutos[this.id] = jugador.min;
-    };
-    MinutosPage.prototype.subirminutos = function () {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Subir minutos',
-            message: '¿Desea subir los minutos?',
-            buttons: [
-                {
-                    text: 'Cancelar',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: 'Subir minutos',
-                    role: 'destructive',
-                    handler: function () {
-                        var fjugador = 0;
-                        var ferror = 0;
-                        var tam;
-                        var minutot = _this.minutot;
-                        console.log(minutot);
-                        for (var cont2 = 0; fjugador == 0 && ferror == 0; cont2++) {
-                            if (_this.minutos[cont2] == undefined || _this.minutos[cont2] == null || _this.minutos[cont2] == NaN) {
-                                ferror = 1;
-                            }
-                            _this.minutos[cont2] = Math.floor(_this.minutos[cont2]);
-                            if (_this.minutos[cont2] > minutot) {
-                                ferror = 2;
-                            }
-                            if (_this.minutos[cont2] < 0) {
-                                ferror = 3;
-                            }
-                            if (_this.jugadores[cont2 + 1] == null) {
-                                fjugador = 1;
-                                tam = cont2;
-                            }
-                        }
-                        if (ferror == 0) {
-                            for (var cont = 0; cont <= tam; cont++) {
-                                console.log(_this.minutos[cont]);
-                                var date = new Date();
-                                var dd = date.getDate();
-                                var mm = (date.getMonth() + 1);
-                                var yyyy = date.getFullYear();
-                                _this.fecha = yyyy + '-' + mm + '-' + dd;
-                                __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria + '/Jugadores/' + cont + '/Minutos/' + _this.fecha).set({
-                                    fecha: _this.fecha,
-                                    minutos: _this.minutos[cont]
-                                });
-                            }
-                            var alert_1 = _this.alertCtrl.create({
-                                title: 'Se han enviado los minutos',
-                                message: 'Los minutos se han enviado exitosamente!',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_1.present();
-                        }
-                        else if (ferror == 1) {
-                            var alert_2 = _this.alertCtrl.create({
-                                title: 'Error al enviar minutos',
-                                message: 'Uno o varios campos se encuentran vacios o incorrectos',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_2.present();
-                        }
-                        else if (ferror == 2) {
-                            var alert_3 = _this.alertCtrl.create({
-                                title: 'Error al enviar minutos',
-                                message: 'Uno o varios campos superan los ' + minutot + ' minutos',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_3.present();
-                        }
-                        else {
-                            var alert_4 = _this.alertCtrl.create({
-                                title: 'Error al enviar minutos',
-                                message: 'Uno o varios campos se encuentran por debajo de 0',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_4.present();
-                        }
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    MinutosPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-minutos',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\minutos\minutos.html"*/'<!--\n\n  Generated template for the MinutosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Minutos\n\n      <img src="assets/imgs/logosf.png"/>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-item *ngFor="let jugador of jugadores">\n\n  <ion-label>{{ jugador.nombre }}</ion-label>\n\n  <ion-input ion-right type="number" [(ngModel)]="jugador.min" (change)="crearminuto(jugador)"></ion-input>\n\n</ion-item>\n\n<button ion-button full (click)="subirminutos()">Enviar Minutos</button>\n\n</ion-content>\n\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\minutos\minutos.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], MinutosPage);
-    return MinutosPage;
-}());
-
-//# sourceMappingURL=minutos.js.map
 
 /***/ }),
 
@@ -689,7 +514,7 @@ var VerDatosPage = /** @class */ (function () {
                     }
                     minutos_t = this.datos[7];
                     minutos_t = minutos_t * this.informacion.length;
-                    document.getElementById("informacion").innerHTML = "<h5>Partidos jugados : " + this.informacion.length + "</h5>" + "<h5>Minutos totales : " + minutos_tj + " de " + minutos_t + "</h5><br/>";
+                    document.getElementById("informacion").innerHTML = "<h5>Partidos jugados : " + this.informacion.length + ' / ' + this.partidos.length + "</h5>" + "<h5>Minutos totales : " + minutos_tj + " de " + minutos_t + "</h5><br/>";
                     for (cont2 = 0; cont2 < this.informacion.length; cont2++) {
                         var contenido = document.createElement("DIV");
                         var a = document.createAttribute("class");
@@ -745,7 +570,7 @@ var VerDatosPage = /** @class */ (function () {
                     }
                 }
                 else {
-                    var alert_1 = this.alertCtrl.create({
+                    var alert = this.alertCtrl.create({
                         title: 'Los datos solicitados no concuerdan',
                         message: 'Pida ayuda al soporte tecnico!',
                         buttons: [
@@ -755,7 +580,7 @@ var VerDatosPage = /** @class */ (function () {
                             }
                         ]
                     });
-                    alert_1.present();
+                    alert.present();
                 }
             }
             if (form.value.Tipo == "Incidencias") {
@@ -788,7 +613,7 @@ var VerDatosPage = /** @class */ (function () {
             }
         }
         else {
-            var alert_2 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: 'No hay datos que mostrar',
                 message: 'Los datos solicitados no existen!',
                 buttons: [
@@ -798,16 +623,17 @@ var VerDatosPage = /** @class */ (function () {
                     }
                 ]
             });
-            alert_2.present();
+            alert.present();
         }
     };
     VerDatosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-ver-datos',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\ver-datos\ver-datos.html"*/'<!--\n  Generated template for the VerDatosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Ver datos\n    <img src="assets/imgs/logosf.png"/>\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <h4>Para ver los datos seleccione un jugador y la informacion que quiere ver</h4>\n  <form [formGroup]="info" (ngSubmit)="buscarinformacion(info)">\n    <div class="info">\n      <ion-item>\n        <ion-select formControlName="Jugador"name="Jugador" required>\n          <ion-label >Seleccione jugador</ion-label>\n          <ion-option *ngFor="let jugador of jugadores" >{{ jugador.nombre }}</ion-option>\n        </ion-select>\n      </ion-item>\n    </div>\n    <div class="info">\n      <ion-item>\n        <ion-select formControlName="Tipo" name="Tipo" required>\n          <ion-label >Seleccione informacion</ion-label>\n          <ion-option>Incidencias</ion-option>\n          <ion-option>Asistencias</ion-option>\n          <ion-option>Minutos</ion-option>\n        </ion-select>\n      </ion-item>\n    </div>\n    <button ion-button type="submit">Buscar</button>\n  </form>\n  <div id="informacion">\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\ver-datos\ver-datos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object])
     ], VerDatosPage);
     return VerDatosPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=ver-datos.js.map
@@ -840,11 +666,11 @@ var map = {
 		7
 	],
 	"../pages/incidencias/incidencias.module": [
-		447,
+		448,
 		6
 	],
 	"../pages/listajugadores/listajugadores.module": [
-		448,
+		447,
 		5
 	],
 	"../pages/login/login.module": [
@@ -852,15 +678,15 @@ var map = {
 		4
 	],
 	"../pages/minutos/minutos.module": [
-		450,
+		452,
 		3
 	],
 	"../pages/partidos/partidos.module": [
-		452,
+		451,
 		2
 	],
 	"../pages/subirpartido/subirpartido.module": [
-		451,
+		450,
 		1
 	],
 	"../pages/ver-datos/ver-datos.module": [
@@ -985,17 +811,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_incidencias_incidencias__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_auth_auth__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_incidencias_incidencias__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_auth_auth__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_listajugadores_listajugadores__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_listajugadores_listajugadores__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_partidos_partidos__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_minutos_minutos__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_asistencia_asistencia__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_equipos_equipos__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_minutos_minutos__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_asistencia_asistencia__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_equipos_equipos__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_ver_datos_ver_datos__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_subirpartido_subirpartido__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_subirpartido_subirpartido__ = __webpack_require__(62);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1040,12 +866,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/asistencia/asistencia.module#AsistenciaPageModule', name: 'AsistenciaPage', segment: 'asistencia', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/incidencias/incidencias.module#IncidenciasPageModule', name: 'IncidenciasPage', segment: 'incidencias', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/listajugadores/listajugadores.module#ListajugadoresPageModule', name: 'ListajugadoresPage', segment: 'listajugadores', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/incidencias/incidencias.module#IncidenciasPageModule', name: 'IncidenciasPage', segment: 'incidencias', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/minutos/minutos.module#MinutosPageModule', name: 'MinutosPage', segment: 'minutos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/subirpartido/subirpartido.module#SubirpartidoPageModule', name: 'SubirpartidoPage', segment: 'subirpartido', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/partidos/partidos.module#PartidosPageModule', name: 'PartidosPage', segment: 'partidos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/minutos/minutos.module#MinutosPageModule', name: 'MinutosPage', segment: 'minutos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ver-datos/ver-datos.module#VerDatosPageModule', name: 'VerDatosPage', segment: 'ver-datos', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -1090,16 +916,15 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_incidencias_incidencias__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_auth_auth__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_incidencias_incidencias__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_auth_auth__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_partidos_partidos__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_minutos_minutos__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_asistencia_asistencia__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_equipos_equipos__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_ver_datos_ver_datos__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_subirpartido_subirpartido__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_asistencia_asistencia__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_jugadores_jugadores__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_equipos_equipos__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_ver_datos_ver_datos__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_subirpartido_subirpartido__ = __webpack_require__(62);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1109,7 +934,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -1144,11 +968,10 @@ var MyApp = /** @class */ (function () {
         // used for an example of ngFor and navigation
         this.pages = [
             { icon: "football", title: 'Partidos', component: __WEBPACK_IMPORTED_MODULE_8__pages_partidos_partidos__["a" /* PartidosPage */] },
-            { icon: "add-circle", title: 'Subir partido', component: __WEBPACK_IMPORTED_MODULE_14__pages_subirpartido_subirpartido__["a" /* SubirpartidoPage */] },
-            { icon: "contacts", title: 'Asistencia', component: __WEBPACK_IMPORTED_MODULE_10__pages_asistencia_asistencia__["a" /* AsistenciaPage */] },
-            { icon: "timer", title: 'Minutos', component: __WEBPACK_IMPORTED_MODULE_9__pages_minutos_minutos__["a" /* MinutosPage */] },
+            { icon: "add-circle", title: 'Subir partido', component: __WEBPACK_IMPORTED_MODULE_13__pages_subirpartido_subirpartido__["a" /* SubirpartidoPage */] },
+            { icon: "contacts", title: 'Asistencia', component: __WEBPACK_IMPORTED_MODULE_9__pages_asistencia_asistencia__["a" /* AsistenciaPage */] },
             { icon: "warning", title: 'Incidencias', component: __WEBPACK_IMPORTED_MODULE_5__pages_incidencias_incidencias__["a" /* IncidenciasPage */] },
-            { icon: "eye", title: 'Ver datos', component: __WEBPACK_IMPORTED_MODULE_13__pages_ver_datos_ver_datos__["a" /* VerDatosPage */] }
+            { icon: "eye", title: 'Ver datos', component: __WEBPACK_IMPORTED_MODULE_12__pages_ver_datos_ver_datos__["a" /* VerDatosPage */] }
         ];
         /*console.log('ionViewDidLoad ListajugadoresPage');
         firebase.database().ref('/InfantilA/Jugadores').on('value', (snapshot) => {
@@ -1180,7 +1003,7 @@ var MyApp = /** @class */ (function () {
                     // pasamos el primer y ultimo caracter a mayuscula
                     _this.categoria = email[0].substring(0, 1).toUpperCase() + email[0].substring(1, email[0].length - 1) + email[0].substring(email[0].length - 1).toUpperCase();
                     // y lo guardamos en la propiedad estatica categoria de JugadoresProvider
-                    __WEBPACK_IMPORTED_MODULE_11__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria = _this.categoria;
+                    __WEBPACK_IMPORTED_MODULE_10__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria = _this.categoria;
                     __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.database().ref('/' + _this.categoria).on('value', function (snapshot) {
                         _this.clasi = [];
                         snapshot.forEach(function (snap) {
@@ -1189,9 +1012,9 @@ var MyApp = /** @class */ (function () {
                         });
                     });
                     // cargamos equipos
-                    __WEBPACK_IMPORTED_MODULE_12__providers_equipos_equipos__["a" /* EquiposProvider */].fetch();
+                    __WEBPACK_IMPORTED_MODULE_11__providers_equipos_equipos__["a" /* EquiposProvider */].fetch();
                     // cargamos los jugadores de la cuenta que ha iniciado sesion
-                    __WEBPACK_IMPORTED_MODULE_11__providers_jugadores_jugadores__["a" /* JugadoresProvider */].fetch();
+                    __WEBPACK_IMPORTED_MODULE_10__providers_jugadores_jugadores__["a" /* JugadoresProvider */].fetch();
                     // si se ha logueado cambiamos la pagina a la pagina principal
                     _this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_8__pages_partidos_partidos__["a" /* PartidosPage */]);
                 }
@@ -1234,25 +1057,231 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/'\n\n<ion-menu [content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <img src="assets/imgs/logo.jpg" alt="avatarimg" />\n\n      <ion-title>{{ categoria }}</ion-title>\n\n      <i (click)="equipo()">Equipo en la FCF</i>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        <ion-icon name="{{ p.icon }}" item-start></ion-icon>\n\n        {{p.title}}\n\n      </button>\n\n      <button ion-item (click)="signOut()">\n\n        <ion-icon name="exit" item-start></ion-icon>\n\n        Cerrar sesion\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _f || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 81:
+/***/ 62:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubirpartidoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partidos_partidos__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__minutos_minutos__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the SubirpartidoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SubirpartidoPage = /** @class */ (function () {
+    function SubirpartidoPage(alertCtrl, builder, navCtrl, navParams) {
+        this.alertCtrl = alertCtrl;
+        this.builder = builder;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.equipos = [];
+        this.partidos = [];
+        this.form = builder.group({
+            equipoLocal: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            equipoVisitante: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            golesLocal: [0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            golesVisitante: [0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]
+        });
+    }
+    SubirpartidoPage_1 = SubirpartidoPage;
+    SubirpartidoPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.jugadores = __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__["a" /* JugadoresProvider */].getJugadores();
+        var _interval = setInterval(function () {
+            if (__WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__["a" /* EquiposProvider */].cargado) {
+                clearInterval(_interval);
+                _this.equipos = __WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__["a" /* EquiposProvider */].getEquipos();
+            }
+        }, 100);
+        console.log('ionViewDidLoad SubirpartidoPage');
+        console.log(this.jugadores);
+    };
+    SubirpartidoPage.prototype.convocado = function (jugador) {
+        this.id = this.jugadores.indexOf(jugador);
+        SubirpartidoPage_1.convocados[this.id] = jugador.value;
+    };
+    SubirpartidoPage.prototype.subirconvocados = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Subir No Convocados',
+            message: '¿Estas seguro de subir los no convocados?',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Subir no convocados',
+                    role: 'destructive',
+                    handler: function () {
+                        var fjugador = 0;
+                        for (var cont = 0; fjugador == 0; cont++) {
+                            console.log(SubirpartidoPage_1.convocados[cont]);
+                            if (SubirpartidoPage_1.convocados[cont] == true) {
+                                var date = new Date();
+                                var dd = date.getDate();
+                                var mm = (date.getMonth() + 1);
+                                var yyyy = date.getFullYear();
+                                var fecha = void 0;
+                                fecha = yyyy + '-' + mm + '-' + dd;
+                                __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria + '/Jugadores/' + cont + '/Minutos/' + fecha).set({
+                                    convocado: "No"
+                                });
+                            }
+                            if (_this.jugadores[cont + 1] == null) {
+                                fjugador = 1;
+                            }
+                        }
+                        var alert = _this.alertCtrl.create({
+                            title: 'Se han enviado los no convocados',
+                            message: 'Los no convocados se han enviado exitosamente!',
+                            buttons: [
+                                {
+                                    text: 'Aceptar',
+                                    role: 'OK'
+                                }
+                            ]
+                        });
+                        alert.present();
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__minutos_minutos__["a" /* MinutosPage */]);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    SubirpartidoPage.prototype.subirPartido = function (form) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Subir Partido',
+            message: '¿Estas seguro de subir el partido?',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Subir Partido',
+                    role: 'destructive',
+                    handler: function () {
+                        if (form.value.equipoLocal != "" && form.value.equipoVisitante != "") {
+                            if (form.value.golesLocal == "") {
+                                form.value.golesLocal = 0;
+                            }
+                            if (form.value.golesVisitante == "") {
+                                form.value.golesVisitante = 0;
+                            }
+                            form.value.golesVisitante = parseInt(form.value.golesVisitante);
+                            form.value.golesLocal = parseInt(form.value.golesLocal);
+                            var date = new Date();
+                            var dd = date.getDate();
+                            var mm = (date.getMonth() + 1);
+                            var yyyy = date.getFullYear();
+                            var Fecha = void 0;
+                            Fecha = yyyy + '-' + mm + '-' + dd;
+                            var partido = {
+                                Equipo1: form.value.equipoLocal,
+                                Equipo2: form.value.equipoVisitante,
+                                GEquipo1: form.value.golesLocal,
+                                GEquipo2: form.value.golesVisitante,
+                                fecha: Fecha
+                            };
+                            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria + '/Partidos/' + Fecha).set(partido);
+                            var alert_1 = _this.alertCtrl.create({
+                                title: 'Se ha subido el partido',
+                                message: 'El partido se ha subido exitosamente!',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_1.present();
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__partidos_partidos__["a" /* PartidosPage */]);
+                        }
+                        else {
+                            var alert_2 = _this.alertCtrl.create({
+                                title: 'Error al subir el partido',
+                                message: 'No se han seleccionado equipos!',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_2.present();
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    SubirpartidoPage.convocados = new Array(20);
+    SubirpartidoPage = SubirpartidoPage_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-subirpartido',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/'<!--\n  Generated template for the SubirpartidoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Subir Partido\n        <img src="assets/imgs/logosf.png"/>\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n  \n  <form [formGroup]="form" (ngSubmit)="subirPartido(form)">\n    <div class="nuevo-partido">\n      <div class="vs-container">\n        <ion-item>\n          <ion-label>Local</ion-label>\n          <ion-select formControlName="equipoLocal" name="equipoLocal" required>\n          <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n        <h1>VS</h1>\n        <ion-item>\n          <ion-label>Visitante</ion-label>\n          <ion-select formControlName="equipoVisitante" name="equipoVisitante" required>\n            <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n      <div class="partido-inputs">\n        <ion-input formControlName="golesLocal" name="golesLocal" type="number" value="0" required></ion-input>\n        <ion-input formControlName="golesVisitante" name="golesVisitante" type="number" value="0" required></ion-input>\n      </div>\n      <button ion-button type="submit">Subir partido</button>\n    </div>\n  </form>\n  <h5>Marcar solo los no convocados</h5>\n  <ion-list>\n    <ion-item *ngFor="let jugador of jugadores">\n      <ion-label>{{jugador.nombre}}</ion-label>\n      <ion-checkbox item-right value="false"  [(ngModel)]="jugador.value" (click)="convocado(jugador)"></ion-checkbox>\n    </ion-item>  \n  </ion-list> \n  <button ion-button full (click)="subirconvocados()">Enviar Convocados</button>\n</ion-content>\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], SubirpartidoPage);
+    return SubirpartidoPage;
+    var SubirpartidoPage_1;
+}());
+
+//# sourceMappingURL=subirpartido.js.map
+
+/***/ }),
+
+/***/ 82:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1260,7 +1289,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__listajugadores_listajugadores__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__listajugadores_listajugadores__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1291,12 +1320,6 @@ var IncidenciasPage = /** @class */ (function () {
     IncidenciasPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad IncidenciasPage');
         this.jugadores = __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].getJugadores();
-    };
-    IncidenciasPage.prototype.ionViewWillEnter = function () {
-        if (__WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].seleccionado != null) {
-            this.jugador = __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].seleccionado;
-            console.log(this.jugador);
-        }
     };
     IncidenciasPage.prototype.seleccionarJugador = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__listajugadores_listajugadores__["a" /* ListajugadoresPage */]);
@@ -1399,152 +1422,6 @@ var IncidenciasPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 82:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubirpartidoPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__partidos_partidos__ = __webpack_require__(83);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-/**
- * Generated class for the SubirpartidoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SubirpartidoPage = /** @class */ (function () {
-    function SubirpartidoPage(alertCtrl, builder, navCtrl, navParams) {
-        this.alertCtrl = alertCtrl;
-        this.builder = builder;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.equipos = [];
-        this.partidos = [];
-        this.form = builder.group({
-            equipoLocal: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            equipoVisitante: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            golesLocal: [0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
-            golesVisitante: [0, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]
-        });
-    }
-    SubirpartidoPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        var _interval = setInterval(function () {
-            if (__WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__["a" /* EquiposProvider */].cargado) {
-                clearInterval(_interval);
-                _this.equipos = __WEBPACK_IMPORTED_MODULE_3__providers_equipos_equipos__["a" /* EquiposProvider */].getEquipos();
-            }
-            console.log(_this.equipos);
-        }, 100);
-        console.log('ionViewDidLoad SubirpartidoPage');
-    };
-    SubirpartidoPage.prototype.subirPartido = function (form) {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Subir Partido',
-            message: '¿Estas seguro de subir el partido?',
-            buttons: [
-                {
-                    text: 'Cancelar',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: 'Subir Partido',
-                    role: 'destructive',
-                    handler: function () {
-                        if (form.value.equipoLocal != "" && form.value.equipoVisitante != "") {
-                            if (form.value.golesLocal == "") {
-                                form.value.golesLocal = 0;
-                            }
-                            if (form.value.golesVisitante == "") {
-                                form.value.golesVisitante = 0;
-                            }
-                            form.value.golesVisitante = parseInt(form.value.golesVisitante);
-                            form.value.golesLocal = parseInt(form.value.golesLocal);
-                            var date = new Date();
-                            var dd = date.getDate();
-                            var mm = (date.getMonth() + 1);
-                            var yyyy = date.getFullYear();
-                            var Fecha = void 0;
-                            Fecha = yyyy + '-' + mm + '-' + dd;
-                            var partido = {
-                                Equipo1: form.value.equipoLocal,
-                                Equipo2: form.value.equipoVisitante,
-                                GEquipo1: form.value.golesLocal,
-                                GEquipo2: form.value.golesVisitante,
-                                fecha: Fecha
-                            };
-                            __WEBPACK_IMPORTED_MODULE_5_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_4__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria + '/Partidos/' + Fecha).set(partido);
-                            var alert_1 = _this.alertCtrl.create({
-                                title: 'Se ha subido el partido',
-                                message: 'El partido se ha subido exitosamente!',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_1.present();
-                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__partidos_partidos__["a" /* PartidosPage */]);
-                        }
-                        else {
-                            var alert_2 = _this.alertCtrl.create({
-                                title: 'Error al subir el partido',
-                                message: 'No se han seleccionado equipos!',
-                                buttons: [
-                                    {
-                                        text: 'Aceptar',
-                                        role: 'OK'
-                                    }
-                                ]
-                            });
-                            alert_2.present();
-                        }
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    SubirpartidoPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-subirpartido',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/'<!--\n  Generated template for the SubirpartidoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Subir Partido\n        <img src="assets/imgs/logosf.png"/>\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n\n  \n  <form [formGroup]="form" (ngSubmit)="subirPartido(form)">\n    <div class="nuevo-partido">\n      <div class="vs-container">\n        <ion-item>\n          <ion-label>Local</ion-label>\n          <ion-select formControlName="equipoLocal" name="equipoLocal" required>\n          <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n        <h1>VS</h1>\n        <ion-item>\n          <ion-label>Visitante</ion-label>\n          <ion-select formControlName="equipoVisitante" name="equipoVisitante" required>\n            <ion-option *ngFor="let equipo of equipos">{{ equipo.nombre }}</ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n      <div class="partido-inputs">\n        <ion-input formControlName="golesLocal" name="golesLocal" type="number" value="0" required></ion-input>\n        <ion-input formControlName="golesVisitante" name="golesVisitante" type="number" value="0" required></ion-input>\n      </div>\n      <button ion-button type="submit">Subir partido</button>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\subirpartido\subirpartido.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], SubirpartidoPage);
-    return SubirpartidoPage;
-}());
-
-//# sourceMappingURL=subirpartido.js.map
-
-/***/ }),
-
 /***/ 83:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1556,7 +1433,7 @@ var SubirpartidoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_jugadores_jugadores__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__subirpartido_subirpartido__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__subirpartido_subirpartido__ = __webpack_require__(62);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1629,6 +1506,213 @@ var PartidosPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=partidos.js.map
+
+/***/ }),
+
+/***/ 84:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MinutosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__subirpartido_subirpartido__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__partidos_partidos__ = __webpack_require__(83);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the MinutosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MinutosPage = /** @class */ (function () {
+    function MinutosPage(alertCtrl, navCtrl, navParams) {
+        this.alertCtrl = alertCtrl;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.minutos = new Array(25);
+        this.convocado = new Array(25);
+        this.noconvocados = new Array(25);
+    }
+    MinutosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad MinutosPage');
+        this.cargarminutost();
+        this.jugadores = __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].getJugadores();
+        var cont2 = 0, cont3 = 0;
+        for (var cont = 0; cont < this.jugadores.length; cont++) {
+            if (__WEBPACK_IMPORTED_MODULE_4__subirpartido_subirpartido__["a" /* SubirpartidoPage */].convocados[cont] != true) {
+                this.convocado[cont2] = this.jugadores[cont];
+                cont2++;
+            }
+            else {
+                this.noconvocados[cont3] = cont;
+                cont3++;
+            }
+        }
+        this.convocados = new Array(cont2 - 1);
+        for (var cont = 0; cont < cont2; cont++) {
+            this.convocados[cont] = this.convocado[cont];
+        }
+        console.log(this.noconvocados);
+    };
+    MinutosPage.prototype.cargarminutost = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria).on('value', function (snapshot) {
+            snapshot.forEach(function (snap) {
+                _this.minutost = snap.val();
+                return false;
+            });
+        });
+    };
+    MinutosPage.prototype.crearminuto = function (convocado) {
+        this.id = this.convocados.indexOf(convocado);
+        this.minutos[this.id] = convocado.min;
+    };
+    MinutosPage.prototype.subirminutos = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Subir minutos',
+            message: '¿Desea subir los minutos?',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Subir minutos',
+                    role: 'destructive',
+                    handler: function () {
+                        var fjugador = 0;
+                        var ferror = 0;
+                        var tam;
+                        var minutot = _this.minutost;
+                        console.log(minutot);
+                        for (var cont2 = 0; fjugador == 0 && ferror == 0; cont2++) {
+                            if (_this.minutos[cont2] == undefined || _this.minutos[cont2] == null || _this.minutos[cont2] == NaN) {
+                                ferror = 1;
+                            }
+                            _this.minutos[cont2] = Math.floor(_this.minutos[cont2]);
+                            if (_this.minutos[cont2] > minutot) {
+                                ferror = 2;
+                            }
+                            if (_this.minutos[cont2] < 0) {
+                                ferror = 3;
+                            }
+                            if (_this.convocados[cont2 + 1] == null) {
+                                fjugador = 1;
+                                tam = cont2;
+                            }
+                        }
+                        if (ferror == 0) {
+                            for (var cont = 0; cont <= tam; cont++) {
+                                var fconvocados = true;
+                                console.log(_this.minutos[cont]);
+                                for (var cont2 = 0; cont2 < _this.noconvocados.length; cont2++) {
+                                    if (_this.noconvocados[cont2] == cont) {
+                                        fconvocados = false;
+                                    }
+                                }
+                                if (fconvocados) {
+                                    var date = new Date();
+                                    var dd = date.getDate();
+                                    var mm = (date.getMonth() + 1);
+                                    var yyyy = date.getFullYear();
+                                    _this.fecha = yyyy + '-' + mm + '-' + dd;
+                                    __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('/' + __WEBPACK_IMPORTED_MODULE_2__providers_jugadores_jugadores__["a" /* JugadoresProvider */].categoria + '/Jugadores/' + cont + '/Minutos/' + _this.fecha).set({
+                                        fecha: _this.fecha,
+                                        minutos: _this.minutos[cont]
+                                    });
+                                }
+                            }
+                            var alert_1 = _this.alertCtrl.create({
+                                title: 'Se han enviado los minutos',
+                                message: 'Los minutos se han enviado exitosamente!',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_1.present();
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__partidos_partidos__["a" /* PartidosPage */]);
+                        }
+                        else if (ferror == 1) {
+                            var alert_2 = _this.alertCtrl.create({
+                                title: 'Error al enviar minutos',
+                                message: 'Uno o varios campos se encuentran vacios o incorrectos',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_2.present();
+                        }
+                        else if (ferror == 2) {
+                            var alert_3 = _this.alertCtrl.create({
+                                title: 'Error al enviar minutos',
+                                message: 'Uno o varios campos superan los ' + minutot + ' minutos',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_3.present();
+                        }
+                        else {
+                            var alert_4 = _this.alertCtrl.create({
+                                title: 'Error al enviar minutos',
+                                message: 'Uno o varios campos se encuentran por debajo de 0',
+                                buttons: [
+                                    {
+                                        text: 'Aceptar',
+                                        role: 'OK'
+                                    }
+                                ]
+                            });
+                            alert_4.present();
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    MinutosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-minutos',template:/*ion-inline-start:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\minutos\minutos.html"*/'<!--\n\n  Generated template for the MinutosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Minutos\n\n      <img src="assets/imgs/logosf.png"/>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-item *ngFor="let convocado of convocados">\n\n  <ion-label>{{ convocado.nombre }}</ion-label>\n\n  <ion-input ion-right type="number" [(ngModel)]="convocado.min" (change)="crearminuto(convocado)"></ion-input>\n\n</ion-item>\n\n<button ion-button full (click)="subirminutos()">Enviar Minutos</button>\n\n</ion-content>\n\n'/*ion-inline-end:"A:\Jorge\Documents\Levante-app\Levante-app\src\pages\minutos\minutos.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _c || Object])
+    ], MinutosPage);
+    return MinutosPage;
+    var _a, _b, _c;
+}());
+
+//# sourceMappingURL=minutos.js.map
 
 /***/ })
 

@@ -28,14 +28,6 @@ export class IncidenciasPage {
     console.log('ionViewDidLoad IncidenciasPage');
     this.jugadores = JugadoresProvider.getJugadores();
   }
-
-  ionViewWillEnter() {
-    if (JugadoresProvider.seleccionado != null) {
-      this.jugador = JugadoresProvider.seleccionado;
-      console.log(this.jugador);
-    }
-  }
-
   seleccionarJugador() {
     this.navCtrl.push(ListajugadoresPage);
   }
