@@ -46,7 +46,7 @@ export class MinutosPage {
     }
     this.convocados=new Array(cont2-1);
     for(let cont=0;cont<cont2;cont++){this.convocados[cont]=this.convocado[cont];}
-    console.log(this.noconvocados);
+    console.log(this.convocados);
   }
   cargarminutost(){
     firebase.database().ref('/' + JugadoresProvider.categoria).on('value', (snapshot) => {
@@ -80,7 +80,6 @@ export class MinutosPage {
             let ferror = 0;
             let tam;
             var minutot :any =this.minutost;
-            console.log(minutot);
             for(let cont2 = 0; fjugador == 0 && ferror==0; cont2++){
               if (this.minutos[cont2] == undefined || this.minutos[cont2] == null || this.minutos[cont2]== NaN ) {
                 ferror=1;
@@ -97,22 +96,20 @@ export class MinutosPage {
                 tam=cont2;
               }
             }
-
+            let date = new Date();
+            let dd = date.getDate();
+            let mm = (date.getMonth() + 1);
+            let yyyy = date.getFullYear();
+            this.fecha = yyyy + '-' + mm + '-' + dd;
             if(ferror==0){    
               for (let cont = 0; cont <= tam; cont++) {
                 var fconvocados=true;
-                console.log(this.minutos[cont]);
-                for(let cont2=0;cont2<this.noconvocados.length;cont2++){
+                for(let cont2=0;cont2<this.convocados.length;cont2++){
                   if(this.noconvocados[cont2]==cont){
                     fconvocados=false;
                   }
                 }
                 if(fconvocados){
-                let date = new Date();
-                let dd = date.getDate();
-                let mm = (date.getMonth() + 1);
-                let yyyy = date.getFullYear();
-                this.fecha = yyyy + '-' + mm + '-' + dd;
                   firebase.database().ref('/' + JugadoresProvider.categoria + '/Jugadores/' + cont + '/Minutos/' + this.fecha).set({
                     fecha: this.fecha,
                     minutos: this.minutos[cont]
@@ -130,7 +127,7 @@ export class MinutosPage {
                 ]
               });
               alert.present();
-              this.navCtrl.push(PartidosPage);
+              this.navCtrl.setRoot(PartidosPage);
             }else if(ferror==1){
               let alert = this.alertCtrl.create({
                 title: 'Error al enviar minutos',

@@ -72,10 +72,11 @@ export class SubirpartidoPage {
         let dd = date.getDate();
         let mm = (date.getMonth()+1);
         let yyyy = date.getFullYear();
-        let fecha : string;
-        fecha = yyyy + '-' + mm + '-' + dd;
-        firebase.database().ref('/' + JugadoresProvider.categoria + '/Jugadores/' + cont +'/Minutos/'+fecha).set({
-            convocado:"No"
+        let Fecha : string;
+        Fecha = yyyy + '-' + mm + '-' + dd;
+        firebase.database().ref('/' + JugadoresProvider.categoria + '/Jugadores/' + cont +'/Minutos/'+Fecha).set({
+            convocado:"No",
+            fecha:Fecha
         }); 
       } 
       if(this.jugadores[cont+1]==null){
