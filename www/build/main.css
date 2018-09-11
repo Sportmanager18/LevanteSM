@@ -26104,6 +26104,10 @@ page-subirpartido .goles {
   padding: 0px 5px;
 }
 
+page-subirpartido .enviar {
+  width: 80%;
+}
+
 page-ver-datos ion-select {
   width: 100%;
 }

@@ -6,6 +6,7 @@ import { JugadoresProvider } from '../../providers/jugadores/jugadores';
 import firebase from 'firebase';
 import { PartidosPage } from '../partidos/partidos';
 import { MinutosPage } from '../minutos/minutos';
+import { ConvocadoPage } from '../convocado/convocado';
 /**
  * Generated class for the SubirpartidoPage page.
  *
@@ -24,6 +25,7 @@ export class SubirpartidoPage {
   public partidos: Array<object> = [];
   public form: FormGroup;
   public id:number;
+  public extras:Array<object>;
   public static convocados:Array<any>= new Array(20);
   constructor(private alertCtrl: AlertController, private builder: FormBuilder, public navCtrl: NavController, public navParams: NavParams) {
     this.form = builder.group({
@@ -47,6 +49,9 @@ export class SubirpartidoPage {
   convocado(jugador){
     this.id=this.jugadores.indexOf(jugador);
     SubirpartidoPage.convocados[this.id]=jugador.value;
+  }
+  anadirconvocado(){
+    this.navCtrl.push(ConvocadoPage);
   }
   subirconvocados(){
     let alert = this.alertCtrl.create({

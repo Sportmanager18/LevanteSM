@@ -37,12 +37,12 @@ export class MyApp {
     this.initializeApp();
     
     this.config = {
-      apiKey: "AIzaSyCBJ5S-mXaSfTiQNfnZnKT4A8lH-17UUhg",
-      authDomain: "fclevantelasplanas.firebaseapp.com",
-      databaseURL: "https://fclevantelasplanas.firebaseio.com",
-      projectId: "fclevantelasplanas",
-      storageBucket: "fclevantelasplanas.appspot.com",
-      messagingSenderId: "891217123681"
+      apiKey: "AIzaSyA6dXHhL1zYBuj8Zu5k0Yyc7Zy_xAUVFYo",
+      authDomain: "fclevante-e4f58.firebaseapp.com",
+      databaseURL: "https://fclevante-e4f58.firebaseio.com",
+      projectId: "fclevante-e4f58",
+      storageBucket: "fclevante-e4f58.appspot.com",
+      messagingSenderId: "38822503981"
     };
     // used for an example of ngFor and navigation
     this.pages = [
