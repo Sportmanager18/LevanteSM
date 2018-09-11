@@ -22,7 +22,9 @@
       </div>
       <button ion-button type="submit">Buscar</button>
     </form>
-    <div id="informacion">
-  
+    <div id="mostrar">
+      <ion-list>
+          <button ion-item *ngFor="let jugador of jugadores" (click)="seleccionar(jugador)">{{ jugador.nombre }}</button>
+      </ion-list> 
     </div>
 </ion-content>

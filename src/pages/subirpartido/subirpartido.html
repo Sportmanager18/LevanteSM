@@ -50,6 +50,11 @@
       <ion-checkbox item-right value="false"  [(ngModel)]="jugador.value" (click)="convocado(jugador)"></ion-checkbox>
     </ion-item>  
   </ion-list>
+  <ion-list >
+      <ion-item *ngFor="let cjugador of cjugadores">
+          <ion-label></ion-label>
+      </ion-item>
+  </ion-list>
   <div>
     <button ion-button (click)="anadirconvocado()">+</button>
     <button ion-button class="enviar" (click)="subirconvocados()">Enviar Convocados</button>

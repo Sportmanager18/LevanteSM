@@ -17,8 +17,12 @@ import firebase from 'firebase';
   templateUrl: 'convocado.html',
 })
 export class ConvocadoPage {
-  private equipos: Array<object> = [];
+  private equipos: Array<any> = [];
+  public static cjugador: object;
+  public static cequipo: object;
+  public jugadores: Array<object> = [];
   public Equipos: FormGroup;
+  public fmostrar:number=0;
   public id:number;
   constructor(public navCtrl: NavController,private builder:FormBuilder, public navParams: NavParams) {
     this.Equipos = builder.group({
@@ -28,12 +32,27 @@ export class ConvocadoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConvocadoPage');
-    firebase.database().ref('/').on('value', (snapshot) => {
-      this.equipos = snapshot.val();
+    firebase.database().ref('/Equipos/').on('value', (snapshot) => {
+      this.equipos = [];
       console.log(snapshot.val());
+      snapshot.forEach((snap) => {
+        this.equipos.push(snap.val());
+        return false;
+      });
+      console.log(this.equipos);
     });
   }
+  buscarjugadores(form){
+    ConvocadoPage.cequipo=form.value.Equipo;
+    firebase.database().ref('/' + form.value.Equipo + '/Jugadores/').on('value', (snapshot) => {
+      this.jugadores = snapshot.val();
+      console.log(this.jugadores);
+    });
+    document.getElementById("mostrar").style.display="block";
+  }
   seleccionar(jugador){
-    
+    console.log(jugador);
+    ConvocadoPage.cjugador=jugador;
+    this.navCtrl.pop();
   }
 }

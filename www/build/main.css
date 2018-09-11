@@ -25841,6 +25841,10 @@ h5 {
   padding: 5px;
 }
 
+page-convocado #mostrar {
+  display: none;
+}
+
 page-incidencias .scroll-content {
   padding-top: 15px;
 }

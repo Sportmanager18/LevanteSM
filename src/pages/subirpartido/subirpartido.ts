@@ -21,6 +21,8 @@ import { ConvocadoPage } from '../convocado/convocado';
 })
 export class SubirpartidoPage {
   public jugadores: Array<object>;
+  public cjugadores: Array<object> = [];
+  public cequipo:object;
   public equipos: Array<object> = [];
   public partidos: Array<object> = [];
   public form: FormGroup;
@@ -37,6 +39,7 @@ export class SubirpartidoPage {
   }
   ionViewDidLoad() {
     this.jugadores = JugadoresProvider.getJugadores();
+    this.cjugadores.push(ConvocadoPage.cjugador);
     let _interval = setInterval(() => {
       if(EquiposProvider.cargado) {
         clearInterval(_interval);
@@ -44,7 +47,7 @@ export class SubirpartidoPage {
       }
     }, 100);
     console.log('ionViewDidLoad SubirpartidoPage');
-    console.log(this.jugadores);
+    console.log(this.cjugadores);
   }
   convocado(jugador){
     this.id=this.jugadores.indexOf(jugador);
