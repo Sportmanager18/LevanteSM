@@ -21,7 +21,7 @@ import { ConvocadoPage } from '../convocado/convocado';
 })
 export class SubirpartidoPage {
   public jugadores: Array<object>;
-  public cjugadores: Array<object> = [];
+  private jugadoresc:Array<any>=[];
   public cequipo:object;
   public equipos: Array<object> = [];
   public partidos: Array<object> = [];
@@ -39,7 +39,7 @@ export class SubirpartidoPage {
   }
   ionViewDidLoad() {
     this.jugadores = JugadoresProvider.getJugadores();
-    this.cjugadores.push(ConvocadoPage.cjugador);
+    
     let _interval = setInterval(() => {
       if(EquiposProvider.cargado) {
         clearInterval(_interval);
@@ -47,7 +47,17 @@ export class SubirpartidoPage {
       }
     }, 100);
     console.log('ionViewDidLoad SubirpartidoPage');
-    console.log(this.cjugadores);
+  }
+  ionViewWillEnter(){
+    if(this.jugadoresc[0]!=undefined){
+    console.log(ConvocadoPage.cjugadores);
+    this.jugadoresc.push(ConvocadoPage.cjugadores);
+    console.log( this.jugadoresc);
+    }else{
+    console.log(ConvocadoPage.cjugadores);
+    this.jugadoresc[0]=ConvocadoPage.cjugadores;
+    console.log( this.jugadoresc);
+    }
   }
   convocado(jugador){
     this.id=this.jugadores.indexOf(jugador);
@@ -55,6 +65,12 @@ export class SubirpartidoPage {
   }
   anadirconvocado(){
     this.navCtrl.push(ConvocadoPage);
+  }
+  Quitar_convocado(jugador){
+    let jposicion=this.jugadoresc.indexOf(jugador);
+    if (jposicion > -1) {
+      this.jugadoresc.splice(jposicion, 1);
+   }
   }
   subirconvocados(){
     let alert = this.alertCtrl.create({
@@ -72,7 +88,17 @@ export class SubirpartidoPage {
           text: 'Subir no convocados',
           role: 'destructive', // color rojo en iOS
           handler: () => {
-            let fjugador=0;
+    //Jugadores de otros equipos
+    for(let cont=0;this.jugadoresc.length!=cont;cont++){
+    
+    this.jugadoresc[cont].Convocado.convocado=this.jugadoresc[cont].Convocado.convocado+1;
+    console.log(this.jugadoresc[cont].equipo);
+    firebase.database().ref('/' +this.jugadoresc[cont].equipo + '/Jugadores/' + this.jugadoresc[cont].id+'/Convocado').set({
+        convocado:this.jugadoresc[cont].Convocado.convocado
+    }); 
+    }
+    //Jugadores del equipo
+    let fjugador=0;
     for(let cont=0;fjugador==0;cont++){
       console.log(SubirpartidoPage.convocados[cont]);
       if(SubirpartidoPage.convocados[cont] == true ){

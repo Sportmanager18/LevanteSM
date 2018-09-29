@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {JugadoresProvider} from '../../providers/jugadores/jugadores';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import firebase from 'firebase';
+import { SubirpartidoPage } from '../subirpartido/subirpartido';
 
 /**
  * Generated class for the ConvocadoPage page.
@@ -18,13 +19,13 @@ import firebase from 'firebase';
 })
 export class ConvocadoPage {
   private equipos: Array<any> = [];
-  public static cjugador: object;
+  public static cjugadores: object;
   public static cequipo: object;
   public jugadores: Array<object> = [];
   public Equipos: FormGroup;
   public fmostrar:number=0;
-  public id:number;
-  constructor(public navCtrl: NavController,private builder:FormBuilder, public navParams: NavParams) {
+  public static equipo : String;
+  constructor(private alertCtrl: AlertController,public navCtrl: NavController,private builder:FormBuilder, public navParams: NavParams) {
     this.Equipos = builder.group({
       Equipo: ['', Validators.required]
     });
@@ -47,12 +48,32 @@ export class ConvocadoPage {
     firebase.database().ref('/' + form.value.Equipo + '/Jugadores/').on('value', (snapshot) => {
       this.jugadores = snapshot.val();
       console.log(this.jugadores);
+      ConvocadoPage.equipo=form.value.Equipo;
     });
     document.getElementById("mostrar").style.display="block";
   }
   seleccionar(jugador){
+    jugador.equipo= ConvocadoPage.equipo;
+    jugador.id=this.jugadores.indexOf(jugador);
+    if(jugador.Convocado.convocado>5){
     console.log(jugador);
-    ConvocadoPage.cjugador=jugador;
+    ConvocadoPage.cjugadores=jugador;
+    console.log(jugador);
     this.navCtrl.pop();
+    }else{
+      let alert = this.alertCtrl.create({
+        title: 'No se puede convocar',
+        message: 'El Jugador ya ha sido convocado 5 veces',
+        buttons: [
+          {
+            text: 'Aceptar',
+            role: 'OK'
+          }
+        ]
+      });
+  
+      alert.present();
+
+    }
   }
 }
