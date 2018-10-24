@@ -70,7 +70,7 @@ export class VerDatosPage {
         return false;
       });
     });
-    if(this.informacion[0] != null || this.informacion[0] != undefined){
+    if(this.informacion[0] != null && this.informacion[0] != undefined){
     document.getElementById("informacion").style.display="block";
     if(form.value.Tipo=="Asistencias"){
       firebase.database().ref('/' + JugadoresProvider.categoria + '/Partidos').on('value', (snapshot) => {
@@ -130,7 +130,7 @@ export class VerDatosPage {
         minutos_t=minutos_t*this.nminutos;
         document.getElementById("informacion").innerHTML="<h5>Partidos convocado : " + this.nminutos+' / '+this.partidos.length +"</h5>"+"<h5>Minutos totales : " + minutos_tj +" de "+minutos_t+"</h5><br/>";
         for(cont2 =0;cont2<this.informacion.length;cont2++){
-          if(this.informacion[cont2].minutos!=null && this.informacion[cont2].minutos!=undefined){
+          if(this.informacion[cont2].minutos!=null || this.informacion[cont2].minutos!=undefined){
             var contenido=document.createElement("DIV");
             var a=document.createAttribute("class");
             a.value="minutos";
